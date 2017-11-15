@@ -3,7 +3,7 @@ Welcome to pyclub_libs
 ======================
 
 This is a public repository of utilities from the python club at the
-`Sainsbury Wellcome Centre for Neural Circuits and Behaviour http://www.ucl.ac.uk/swc`_.
+`Sainsbury Wellcome Centre for Neural Circuits and Behaviour <http://www.ucl.ac.uk/swc>`__.
 
 Libraries in this repository should follow these basic rules:
 
