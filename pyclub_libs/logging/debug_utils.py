@@ -11,8 +11,8 @@ class debug_context():
 
         :param str name: Function name (from func.__name__)
         :param function var_prop_func: A function that takes as input any local variable,
-        and outputs some property you want logging, e.g. size of variable, type of variable, value of variable.
-        The output of this function must be hashable.
+            and outputs some property you want logging, e.g. size of variable, type of variable, value of variable.
+            The output of this function must be hashable.
         """
         self.name = name
         self.var_prop = var_prop_func
@@ -83,10 +83,10 @@ class log_all_variables(object):
     def __init__(self, var_property_function=None):
         """
         :param function var_property_function: an optional function that takes a variable as
-        input and outputs the property of the variable that you want to log.
-        e.g. x: return x  # (this is the default)
-            x: return x.shape()
-            x: return type(x)
+            input and outputs the property of the variable that you want to log.
+            e.g. x: return x  # (this is the default)
+                x: return x.shape()
+                x: return type(x)
         """
         self.var_prop = var_property_function
         
