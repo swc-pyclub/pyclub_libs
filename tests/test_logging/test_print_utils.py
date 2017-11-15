@@ -1,6 +1,6 @@
 import pytest
 
-import print_utils
+from pyclub_libs.logging import print_utils
 
 
 @pytest.mark.parametrize("test_input, test_color, bold, expected_output", [
