@@ -1,5 +1,4 @@
 import numpy as np
-import warnings
 
 
 def _get_decimate_new_n_pnts(trace, window_width, end_method):
