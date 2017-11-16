@@ -1,19 +1,29 @@
 import numpy as np
 
+from pyclub_libs.pyclub_exceptions import PyclubValueError, PyclubTypeError
+
+
+class DecimateValueError(PyclubValueError):
+    pass
+
+
+class DecimateTypeError(PyclubTypeError):
+    pass
+
 
 def _get_decimate_new_n_pnts(trace, window_width, end_method):
     methods = ("drop", "strict", "pad")
     n_remaining_points = trace.size % window_width
     if end_method == 'strict' and n_remaining_points != 0:
-        raise ValueError(
+        raise DecimateValueError(
             "The decimation factor does not create an exact point numbers and you have selected 'strict'")
     elif end_method == 'drop':
         n_samples_last_window = 0
     elif end_method == 'pad':
         n_samples_last_window = n_remaining_points if n_remaining_points <= 2 else 2  # TODO: find better name for 'pad'
     else:
-        raise ValueError("end_method should be one of {}, got {}".
-                         format(methods, end_method))
+        raise DecimateValueError("end_method should be one of {}, got {}".
+                                 format(methods, end_method))
     n_complete_windows = trace.size // window_width
     new_n_pnts = n_complete_windows * 2 + n_samples_last_window
     return new_n_pnts
@@ -35,10 +45,10 @@ def decimate(trace, decimation_factor=10, end_method="drop"):
     """
 
     if not isinstance(decimation_factor, int):
-        raise TypeError("Decimation factor should be an integer number. Got {}.".format(decimation_factor))
+        raise PyclubTypeError("Decimation factor should be an integer number. Got {}.".format(decimation_factor))
     if decimation_factor < 1:
-        raise ValueError("Decimation factor needs to be at least 1 to get a window of 2. Got {}.".
-                         format(decimation_factor))
+        raise DecimateValueError("Decimation factor needs to be at least 1 to get a window of 2. Got {}.".
+                                 format(decimation_factor))
 
     window_width = decimation_factor * 2
 
@@ -66,3 +76,4 @@ def decimate_x(x_trace, decimation_factor=10, end_method="drop"):
     window_width = decimation_factor * 2
     new_n_pnts = _get_decimate_new_n_pnts(x_trace, window_width, end_method)
     return np.linspace(x_trace[0], x_trace[-1], new_n_pnts)  # FIXME: adjust not exactly x_trace[-1] because of drop
+
