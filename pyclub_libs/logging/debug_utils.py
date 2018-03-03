@@ -96,9 +96,9 @@ class log_all_variables(object):
             self.var_prop = lambda x: x
 
     def __call__(self, func):
-        def wrapped_f(*args):
+        def wrapped_f(*args, **kwargs):
             with debug_context(func.__name__, self.var_prop):            
-                return_val = func(*args)
+                return_val = func(*args, **kwargs)
             return return_val
         return wrapped_f
 
