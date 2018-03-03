@@ -107,3 +107,16 @@ class log_all_variables_type(log_all_variables):
     def __init__(self):
         self.var_prop = type
 
+
+def numpy_shape(x):
+    if type(x).__module__ =='numpy':
+        return 'shape{}'.format(x.shape)
+    else:
+        return '[{}]'.format(type(x))
+
+
+class log_all_variables_numpy_shape(log_all_variables):
+    def __init__(self):
+        self.var_prop = numpy_shape
+
+
