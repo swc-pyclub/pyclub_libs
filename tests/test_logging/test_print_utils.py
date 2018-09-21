@@ -1,6 +1,6 @@
 import pytest
 
-from pyclub_libs.logging import print_utils
+from pyclub_libs.logging import terminal
 
 
 @pytest.mark.parametrize("test_input, test_color, bold, expected_output", [
@@ -9,10 +9,10 @@ from pyclub_libs.logging import print_utils
     ('a', 'blue', 0, '\x1b[34ma\x1b[0m')
 ])
 def test_shell_format(test_input, test_color, bold, expected_output):
-    assert print_utils.shell_hilite(test_input, test_color, bold) == expected_output
+    assert terminal.shell_hilite(test_input, test_color, bold) == expected_output
 
 
 def test_shell_format_raises():
     with pytest.raises(AttributeError):
-        print_utils.shell_hilite("a", "not_a_color")
+        terminal.shell_hilite("a", "not_a_color")
 

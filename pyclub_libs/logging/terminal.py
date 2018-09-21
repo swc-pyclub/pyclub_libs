@@ -1,3 +1,15 @@
+shell_color_codes = {
+    'black': (30, 40),
+    'red': (31, 41),
+    'green': (32, 42),
+    'yellow': (33, 43),
+    'blue': (34, 44),
+    'magenta': (35, 45),
+    'cyan': (36, 46),
+    'white': (37, 47)
+}
+
+
 def dprint(input_str):
     """
     prints the input if in debug mode, skips otherwise.
@@ -32,19 +44,9 @@ def shell_hilite(src_string, color, bold=True):
     :rtype: str
     """
     color = color.lower()
-    colors = {
-        'black':    (30, 40),
-        'red':      (31, 41),
-        'green':    (32, 42),
-        'yellow':   (33, 43),
-        'blue':     (34, 44),
-        'magenta':  (35, 45),
-        'cyan':     (36, 46),
-        'white':    (37, 47)
-    }
-    if color not in colors.keys():
+    if color not in shell_color_codes.keys():
         raise AttributeError("Unknown color {}".format(color))
-    color_params = [str(colors[color][0])]
+    color_params = [str(shell_color_codes[color][0])]
     if bold:
         color_params.append('1')
     return '\x1b[%sm%s\x1b[0m' % (';'.join(color_params), src_string)
