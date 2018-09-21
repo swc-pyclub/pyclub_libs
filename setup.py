@@ -3,7 +3,8 @@ from distutils.core import setup
 
 requirements = [
     'numpy',
-    'rpy2'
+    'scipy',
+    'rpy2'  # TODO: make optional (based on whether the user wants stats)
 ]
 
 
