@@ -1,12 +1,16 @@
 from distutils.core import setup
 
 
-requirements = ['numpy']
+requirements = [
+    'numpy',
+    'scipy',
+    'rpy2'  # TODO: make optional (based on whether the user wants stats)
+]
 
 
 setup(
     name='pyclub_libs',
-    version='0.1',
+    version='0.1.1',
     packages=['pyclub_libs',
               'pyclub_libs.logging',
               'pyclub_libs.logging'

@@ -76,4 +76,3 @@ def decimate_x(x_trace, decimation_factor=10, end_method="drop"):
     window_width = decimation_factor * 2
     new_n_pnts = _get_decimate_new_n_pnts(x_trace, window_width, end_method)
     return np.linspace(x_trace[0], x_trace[-1], new_n_pnts)  # FIXME: adjust not exactly x_trace[-1] because of drop
-
