@@ -1,3 +1,7 @@
+"""
+A set of decorators for logging variables in the decorated functions
+"""
+
 import sys
 import collections
 
@@ -61,13 +65,14 @@ class debug_context():
         
         # Extract property we're interested in from each local variable        
         local_vars = frame.f_locals
-        local_vars_with_props = {k: self.var_prop_hashable(local_vars[k]) 
-                                    for k in local_vars.keys()}            
+        local_vars_with_props = {k: self.var_prop_hashable(local_vars[k])
+                                 for k in local_vars.keys()}
 
         # Remove any already logged (unless they've changed their property since logging)
         new_or_changed_vars = dict( 
             set(local_vars_with_props.items()) - 
-            set(self.cached_vars.items()) )
+            set(self.cached_vars.items())
+        )
         
         self.cached_vars = local_vars_with_props.copy()
 
@@ -92,7 +97,7 @@ class log_all_variables(object):
         
         # default to printing out every variable if no other
         # property functor given
-        if (self.var_prop is None):
+        if self.var_prop is None:
             self.var_prop = lambda x: x
 
     def __call__(self, func):
@@ -106,4 +111,3 @@ class log_all_variables(object):
 class log_all_variables_type(log_all_variables):
     def __init__(self):
         self.var_prop = type
-

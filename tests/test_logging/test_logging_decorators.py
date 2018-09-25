@@ -1,4 +1,4 @@
-from pyclub_libs.logging.debug_utils import log_all_variables
+from pyclub_libs.logging.logging_decorators import log_all_variables
 
 
 @log_all_variables()
@@ -12,4 +12,3 @@ def do_something():
 
 def test_log_all_variables():
     do_something()
-
